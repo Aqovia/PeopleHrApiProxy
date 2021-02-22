@@ -1,19 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
-using Microsoft.Net.Http.Headers;
-using Microsoft.WindowsAzure.Storage.Table;
 using Newtonsoft.Json;
 
 namespace PeopleHrApiProxy
@@ -45,8 +38,7 @@ namespace PeopleHrApiProxy
 
             dynamic payload = JsonConvert.DeserializeObject(payloadRaw);
 
-            int payloadStatus;
-            if (int.TryParse(payload.Status.ToString(), out payloadStatus))
+            if (int.TryParse(payload.Status.ToString(), out int payloadStatus))
             {
                 switch (payloadStatus)
                 {
